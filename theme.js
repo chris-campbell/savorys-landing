@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
         margin: 0;
     }
-    
+
     body {
         background-color: ${({ theme }) => theme.colors.tan};
         font-family: ${({ theme }) => theme.fonts[1]};
@@ -32,7 +32,7 @@ export const theme = {
     beanGreen: "#8E9D7A",
     tan: "#FDF1DA",
   },
-  fonts: ["atrament-web", "arboria"],
+  fonts: ["atrament-web", "arboria", "bourbon"],
   fontSizes: {
     xl: "3.125em", // 50px
     lg: "2.8125em", // 45px
