@@ -42,7 +42,7 @@ const CoffeeSectionContainer = styled.section`
       p {
         text-align: right;
         line-height: 1.8;
-        color: ${({ theme }) => theme.colors.beanGreen};
+        color: ${({ theme }) => theme.colors.darkPurple};
       }
     }
   }

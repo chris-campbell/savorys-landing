@@ -13,7 +13,7 @@ export default function HomePage({ products }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Home />
+      <Home products={products} />
     </div>
   );
 }

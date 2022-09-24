@@ -12,7 +12,7 @@ const nextConfig = {
     COMMERCE_SECRET_KEY: process.env.COMMERCE_SECRET_KEY,
   },
   images: {
-    domains: ["s3.us-east-2.amazonaws.com"],
+    domains: ["s3.us-east-2.amazonaws.com", "cdn.chec.io"],
   },
 };
 
