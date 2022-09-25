@@ -13,6 +13,7 @@ const Hero = () => {
             green coffee. infused with a mild shot of our unique hvorid strains
             of THC specifically bred to relieve mental + body stress.
           </p>
+
           <button>Menu</button>
         </div>
       </div>

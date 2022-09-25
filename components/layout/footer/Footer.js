@@ -49,7 +49,7 @@ const FooterContainer = styled.footer`
 
     .business-details {
       display: flex;
-      gap: 2rem;
+      gap: 3rem;
       @media (max-width: 891px) {
         flex-direction: column;
         gap: 3rem;
