@@ -11,8 +11,6 @@ const PopoutCart = () => {
 
   return (
     <PopOutCartContainer toggleOn={open}>
-      <input id="toggle" type="checkbox" checked style={{ display: "none" }} />
-
       <Cart lineItems={line_items} />
     </PopOutCartContainer>
   );
