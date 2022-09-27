@@ -5,7 +5,6 @@ import styled from "styled-components";
 import ThcSection from "./thcSection/ThcSection";
 import CupsSold from "./cupsSold/CupsSold";
 import Menu from "./menu/Menu";
-import Footer from "../layout/footer/Footer";
 
 const HomeContainer = styled.div`
   position: relative;

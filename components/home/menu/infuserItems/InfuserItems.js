@@ -21,7 +21,7 @@ const InfuserItems = ({ infusers }) => {
     <InfuserItemsContainer>
       <div className="infuser-items-wrapper">
         {infusers.map((infuser) => (
-          <Infuser {...infuser} />
+          <Infuser key={infuser.id} {...infuser} />
         ))}
       </div>
     </InfuserItemsContainer>

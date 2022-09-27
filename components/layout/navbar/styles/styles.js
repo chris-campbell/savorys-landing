@@ -35,6 +35,7 @@ const NavbarContainer = styled.nav`
           align-items: center;
           justify-content: center;
           font-size: 0.9rem;
+          cursor: pointer;
         }
       }
     }

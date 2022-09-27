@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const HeroContainer = styled.section`
   max-height: 80vh;
+  position: relative;
+  display: flex;
   .content-wrapper {
     height: 100%;
     width: 100%;

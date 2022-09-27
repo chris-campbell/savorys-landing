@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useCartDispatch } from "../../../../../../context/cart";
 import getCommerce from "../../../../../../lib/commerce";
+import { CartOpenContext } from "../../../../../../context/openCart";
 
 const AddCoffeeToCartContainer = styled.div`
   display: flex;
@@ -29,12 +30,21 @@ const AddCoffeeToCartContainer = styled.div`
 
 const AddCoffeeToCart = ({ price, coffeeId }) => {
   const { setCart } = useCartDispatch();
+  const { toggle, open } = useContext(CartOpenContext);
 
   const addToCart = () => {
     const commerce = getCommerce();
-    commerce.cart.add(coffeeId, 1).then(({ cart }) => {
-      setCart(cart);
-    });
+
+    if (open) {
+      commerce.cart.add(coffeeId, 1).then(({ cart }) => {
+        setCart(cart);
+      });
+    } else {
+      toggle();
+      commerce.cart.add(coffeeId, 1).then(({ cart }) => {
+        setCart(cart);
+      });
+    }
   };
   return (
     <AddCoffeeToCartContainer className="add-to-cart">

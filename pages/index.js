@@ -4,7 +4,7 @@ import Home from "../components/home/Home";
 import getCommerce from "../lib/commerce";
 
 export default function HomePage({ products }) {
-  console.log(products);
+  console.log({ products });
   return (
     <div>
       <Head>

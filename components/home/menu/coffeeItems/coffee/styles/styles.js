@@ -22,7 +22,7 @@ const CoffeeContainer = styled.div`
       grid-auto-rows: min-content;
     }
 
-    /* p {
+    p {
       color: ${({ theme }) => theme.colors.beanGreen};
       font-style: italic;
       line-height: 1.4;
@@ -30,7 +30,7 @@ const CoffeeContainer = styled.div`
       word-wrap: break-word;
       margin-top: 2rem;
       font-size: clamp(0.9rem, 1vw, ${({ theme }) => theme.fontSizes.xxs});
-    } */
+    }
   }
 `;
 

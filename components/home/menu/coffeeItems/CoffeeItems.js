@@ -7,7 +7,7 @@ const CoffeeItems = ({ coffees }) => {
     <CoffeeItemsContainer>
       <div className="coffee-items-wrapper">
         {coffees.map((coffee) => (
-          <Coffee {...coffee} />
+          <Coffee key={coffee.id} {...coffee} />
         ))}
       </div>
     </CoffeeItemsContainer>
