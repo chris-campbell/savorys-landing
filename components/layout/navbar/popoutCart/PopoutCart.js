@@ -3,7 +3,6 @@ import { useCartState } from "../../../../context/cart";
 import { PopOutCartContainer } from "./styles/styles";
 import { CartOpenContext } from "../../../../context/openCart";
 import Cart from "./cart/Cart";
-import CloseButton from "./cart/closeButton/CloseButton";
 
 const PopoutCart = () => {
   const { line_items } = useCartState();
