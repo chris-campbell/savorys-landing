@@ -45,7 +45,7 @@ export const PopOutCartContainer = styled.div`
           justify-content: center;
           align-items: center;
           color: ${({ theme }) => theme.colors.tan};
-          font-size: 0.9em;
+          font-size: 0.7em;
         }
       }
     }

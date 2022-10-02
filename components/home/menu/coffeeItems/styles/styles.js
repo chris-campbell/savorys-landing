@@ -5,7 +5,7 @@ const CoffeeItemsContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 3rem;
-    grid-auto-columns: 1fr;
+    /* grid-auto-columns: 1fr; */
 
     @media (max-width: 777px) {
       grid-template-columns: none;

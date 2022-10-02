@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const CoffeeDescriptionContainer = styled.p`
   color: ${({ theme }) => theme.colors.beanGreen};
-  font-style: italic;
   line-height: 1.4;
   align-self: center;
   word-wrap: break-word;
@@ -16,6 +15,7 @@ const CoffeeDescriptionContainer = styled.p`
 
 const CoffeeDescription = ({ desc }) => {
   const modDescription = desc.replace(/<[^>]+>/g, "");
+
   return (
     <CoffeeDescriptionContainer>{modDescription}</CoffeeDescriptionContainer>
   );

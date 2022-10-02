@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useCartDispatch } from "../../../../../../context/cart";
 import getCommerce from "../../../../../../lib/commerce";
 import { CartOpenContext } from "../../../../../../context/openCart";
+import AddButton from "./addButton/AddButton";
+import Price from "./price/Price";
 
 const AddCoffeeToCartContainer = styled.div`
   display: flex;
@@ -10,48 +12,44 @@ const AddCoffeeToCartContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
-  .price {
-    font-family: ${({ theme }) => theme.fonts[0]};
-    font-size: ${({ theme }) => theme.fontSizes.xs};
-    color: ${({ theme }) => theme.colors.beanGreen};
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-
-  .add-button {
-    background-color: transparent;
-    padding: 0.1rem 0.4rem;
-    border: 1.5px solid ${({ theme }) => theme.colors.beanGreen};
-    color: ${({ theme }) => theme.colors.beanGreen};
-    border-radius: 2rem;
-    font-size: ${({ theme }) => theme.fontSizes.xxs};
-  }
 `;
 
-const AddCoffeeToCart = ({ price, coffeeId }) => {
+const AddCoffeeToCart = ({
+  price,
+  coffeeId,
+  selectedInfuserId,
+  sizeGroupId,
+  infuserGroupId,
+}) => {
   const { setCart } = useCartDispatch();
   const { toggle, open } = useContext(CartOpenContext);
 
-  const addToCart = () => {
+  const updateCart = async (id, qty, variants = {}) => {
     const commerce = getCommerce();
 
+    const { cart } = await commerce.cart.add(id, qty, variants);
+    setCart(cart);
+  };
+
+  const addToCart = () => {
+    const variants = {
+      [infuserGroupId]: selectedInfuserId,
+    };
+
+    if (variants[infuserGroupId] === "") return console.log("Empty");
+
     if (open) {
-      commerce.cart.add(coffeeId, 1).then(({ cart }) => {
-        setCart(cart);
-      });
+      updateCart(coffeeId, 1, variants);
     } else {
       toggle();
-      commerce.cart.add(coffeeId, 1).then(({ cart }) => {
-        setCart(cart);
-      });
+      updateCart(coffeeId, 1, variants);
     }
   };
+
   return (
-    <AddCoffeeToCartContainer className="add-to-cart">
-      <div className="price">{price.formatted_with_symbol}</div>
-      <button className="add-button" onClick={addToCart}>
-        +
-      </button>
+    <AddCoffeeToCartContainer>
+      <Price price={price} />
+      <AddButton addToCart={addToCart} />
     </AddCoffeeToCartContainer>
   );
 };

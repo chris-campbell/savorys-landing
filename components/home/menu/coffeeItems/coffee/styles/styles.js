@@ -5,7 +5,7 @@ const CoffeeContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 
   @media (max-width: 777px) {
     border-bottom: 1px solid #8e9d7a36;
@@ -16,7 +16,7 @@ const CoffeeContainer = styled.div`
   }
 
   .coffee-wrapper {
-    grid-auto-rows: 1fr;
+    /* grid-auto-rows: 1fr; */
     display: grid;
     @media (max-width: 777px) {
       grid-auto-rows: min-content;

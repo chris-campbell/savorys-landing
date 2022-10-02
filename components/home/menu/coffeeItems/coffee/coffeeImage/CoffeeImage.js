@@ -12,7 +12,7 @@ const CoffeeImageContainer = styled.div`
 
 const CoffeeImage = ({ image }) => {
   return (
-    <CoffeeImageContainer className="coffee-image">
+    <CoffeeImageContainer>
       <Image src={image.url} width={85} height={120} />
     </CoffeeImageContainer>
   );

@@ -25,7 +25,7 @@ const CloseButton = () => {
 
   return (
     <CloseButtonContainer onClick={toggle}>
-      <div>X</div>
+      <div>▷</div>
     </CloseButtonContainer>
   );
 };
