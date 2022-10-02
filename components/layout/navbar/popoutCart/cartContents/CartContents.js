@@ -8,6 +8,9 @@ const CartContentsContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  .empty-cart-msg {
+    color: ${({ theme }) => theme.colors.tan};
+  }
   p {
     color: ${({ theme }) => theme.colors.tan};
     width: fit-content;
@@ -25,23 +28,49 @@ const CartContentsContainer = styled.div`
   }
 `;
 
+const EmptyCartMsg = styled.p`
+  color: ${({ theme }) => theme.colors.tan};
+`;
+
+const ContinueToPaymentBtn = styled.button`
+  padding: 1rem 2rem;
+  width: 100%;
+  margin-top: 4rem;
+  border: none;
+  border-radius: 0.2rem;
+  background-color: ${({ theme }) => theme.colors.darkPurple};
+  color: ${({ theme }) => theme.colors.tan};
+  text-transform: uppercase;
+  font-size: 0.7rem;
+`;
+
 const CartContents = ({ lineItems }) => {
   const { subtotal } = useCartState();
 
+  console.log({ lineItems });
+
   return (
     <>
-      <div>
-        {lineItems.map((item) => (
-          <CartItem key={item.id} {...item} />
-        ))}
-      </div>
+      {lineItems.length <= 0 ? (
+        <EmptyCartMsg className="empty-cart-msg">No items in cart</EmptyCartMsg>
+      ) : (
+        <>
+          <div>
+            {lineItems.map((item) => (
+              <CartItem key={item.id} {...item} />
+            ))}
+          </div>
 
-      <CartContentsContainer className="cart-total">
-        <p>
-          <span>Subtotal: </span>
-          {subtotal?.formatted_with_symbol}
-        </p>
-      </CartContentsContainer>
+          <CartContentsContainer>
+            <p>
+              <span>Subtotal: </span>
+              {subtotal?.formatted_with_symbol}
+            </p>
+          </CartContentsContainer>
+
+          <ContinueToPaymentBtn>Continue to Payment</ContinueToPaymentBtn>
+        </>
+      )}
     </>
   );
 };

@@ -12,7 +12,7 @@ const InfuserOptionsContainer = styled.div`
     color: ${({ theme }) => theme.colors.beanGreen};
     text-transform: uppercase;
     font-size: 0.8rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.2rem;
   }
 `;
 

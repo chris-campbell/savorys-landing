@@ -6,29 +6,35 @@ const SizeOptionsContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   column-gap: 0.3rem;
 
-  .size-option {
+  select {
+    border: 1px solid transparent;
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    background-color: transparent;
     font-family: ${({ theme }) => theme.fonts[1]};
     color: ${({ theme }) => theme.colors.beanGreen};
-    font-size: 0.7rem;
-    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    padding: 0.5rem 0.2rem;
   }
 `;
 
-const Size = styled.div`
-  text-align: center;
-  font-size: 0.9rem;
-  font-family: ${({ theme }) => theme.fonts[1]};
-  color: ${({ theme }) => theme.colors.beanGreen};
-  /* font-weight: 600; */
-`;
-
-const SizeOptions = ({ options }) => {
-  const sizeOptions = () =>
-    options.map(({ name, id }) => <Size key={id}>{`${name} `}</Size>);
+const SizeOptions = ({ sizes, setSize }) => {
+  const handleChange = (e) => {
+    setSize(e.target.value);
+  };
 
   return (
-    <SizeOptionsContainer className="coffee-size-options">
-      {sizeOptions()}
+    <SizeOptionsContainer>
+      <select onChange={handleChange}>
+        <option disabled selected value>
+          Select a size
+        </option>
+
+        {sizes.map(({ name, id }) => (
+          <option key={id} value={id}>{`${name}`}</option>
+        ))}
+      </select>
     </SizeOptionsContainer>
   );
 };

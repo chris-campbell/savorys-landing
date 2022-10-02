@@ -2,6 +2,7 @@ import React from "react";
 import CartContents from "../cartContents/CartContents";
 import CloseButton from "./closeButton/CloseButton";
 import { useCartState } from "../../../../../context/cart";
+import styled from "styled-components";
 
 const Cart = ({ lineItems }) => {
   const { total_items } = useCartState();
@@ -18,6 +19,8 @@ const Cart = ({ lineItems }) => {
 
         <CartContents lineItems={lineItems} />
       </div>
+      {/* 
+      <ContinueToPaymentBtn>Continue to Payment</ContinueToPaymentBtn> */}
     </div>
   );
 };

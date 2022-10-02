@@ -20,6 +20,7 @@ const AddCoffeeToCart = ({
   selectedInfuserId,
   sizeGroupId,
   infuserGroupId,
+  selectedSizeId,
 }) => {
   const { setCart } = useCartDispatch();
   const { toggle, open } = useContext(CartOpenContext);
@@ -34,9 +35,11 @@ const AddCoffeeToCart = ({
   const addToCart = () => {
     const variants = {
       [infuserGroupId]: selectedInfuserId,
+      [sizeGroupId]: selectedSizeId,
     };
 
-    if (variants[infuserGroupId] === "") return console.log("Empty");
+    if (variants[infuserGroupId] === "" || variants[sizeGroupId] === "")
+      return console.log("Empty");
 
     if (open) {
       updateCart(coffeeId, 1, variants);

@@ -16,10 +16,9 @@ const Coffee = ({
   variant_groups,
 }) => {
   const [selectedInfuserId, setSelectedInfuserId] = useState("");
+  const [selectedSizeId, setSelectedSizeId] = useState("");
   const [infuserGroupId, setInfuserGroupId] = useState("");
   const [sizeGroupId, setSizeGroupId] = useState("");
-
-  console.log(variant_groups);
 
   return (
     <CoffeeContainer>
@@ -30,6 +29,7 @@ const Coffee = ({
         <CoffeeOptions
           variants={variant_groups}
           setInfuser={setSelectedInfuserId}
+          setSize={setSelectedSizeId}
           setInfuserGroupId={setInfuserGroupId}
           setSizeGroupId={setSizeGroupId}
         />
@@ -37,6 +37,7 @@ const Coffee = ({
         <AddCoffeeToCart
           price={price}
           selectedInfuserId={selectedInfuserId}
+          selectedSizeId={selectedSizeId}
           infuserGroupId={infuserGroupId}
           sizeGroupId={sizeGroupId}
           coffeeId={id}

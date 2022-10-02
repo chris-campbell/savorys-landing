@@ -16,6 +16,7 @@ const CoffeeOptionsContainer = styled.div`
 const CoffeeOptions = ({
   variants,
   setInfuser,
+  setSize,
   setInfuserGroupId,
   setSizeGroupId,
 }) => {
@@ -38,7 +39,11 @@ const CoffeeOptions = ({
   return (
     <CoffeeOptionsContainer>
       <div className="coffee-option-wrapper">
-        <SizeOptions options={sizes} />
+        <SizeOptions
+          sizes={sizes}
+          setSize={setSize}
+          variantGroupId={variants[0].id}
+        />
         <InfuserOptions
           infusers={infusers}
           setInfuser={setInfuser}
