@@ -82,7 +82,10 @@ const CartItem = ({
           <h4 className="item-name">{product_name}</h4>
           <div className="item-sku">
             {selected_options.map(({ group_name, option_name }) => (
-              <div className="item-option">{`${group_name}: ${option_name}`}</div>
+              <div
+                key={id}
+                className="item-option"
+              >{`${group_name}: ${option_name}`}</div>
             ))}
           </div>
         </div>
