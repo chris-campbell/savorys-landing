@@ -8,7 +8,7 @@ import { CartOpenContext } from "../../../context/openCart";
 import { useCartState } from "../../../context/cart";
 
 const Navbar = () => {
-  const { toggle } = useContext(CartOpenContext);
+  const { toggle, open } = useContext(CartOpenContext);
   const { total_items } = useCartState();
 
   return (

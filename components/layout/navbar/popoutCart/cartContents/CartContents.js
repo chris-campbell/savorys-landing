@@ -42,12 +42,13 @@ const ContinueToPaymentBtn = styled.button`
   color: ${({ theme }) => theme.colors.tan};
   text-transform: uppercase;
   font-size: 0.7rem;
+  box-shadow: 10px 10px 16px -11px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 16px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 16px -11px rgba(0, 0, 0, 0.75);
 `;
 
-const CartContents = ({ lineItems }) => {
+const CartContents = ({ lineItems, goTo }) => {
   const { subtotal } = useCartState();
-
-  console.log({ lineItems });
 
   return (
     <>
@@ -68,7 +69,9 @@ const CartContents = ({ lineItems }) => {
             </p>
           </CartContentsContainer>
 
-          <ContinueToPaymentBtn>Continue to Payment</ContinueToPaymentBtn>
+          <ContinueToPaymentBtn onClick={() => goTo()}>
+            Continue to Payment
+          </ContinueToPaymentBtn>
         </>
       )}
     </>

@@ -10,7 +10,7 @@ const InfuserOptionsContainer = styled.div`
     background-color: transparent;
     font-family: ${({ theme }) => theme.fonts[1]};
     color: ${({ theme }) => theme.colors.beanGreen};
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 0.8rem;
     padding: 0.5rem 0.2rem;
   }

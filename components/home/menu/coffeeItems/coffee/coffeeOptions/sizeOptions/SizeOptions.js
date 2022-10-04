@@ -13,9 +13,10 @@ const SizeOptionsContainer = styled.div`
     background-color: transparent;
     font-family: ${({ theme }) => theme.fonts[1]};
     color: ${({ theme }) => theme.colors.beanGreen};
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 0.8rem;
     padding: 0.5rem 0.2rem;
+    letter-spacing: 0.1px;
   }
 `;
 
@@ -26,7 +27,7 @@ const SizeOptions = ({ sizes, setSize }) => {
 
   return (
     <SizeOptionsContainer>
-      <select onChange={handleChange}>
+      <select defaultValue={sizes[0]} onChange={handleChange}>
         <option disabled selected value>
           Select a size
         </option>
