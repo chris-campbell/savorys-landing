@@ -43,6 +43,7 @@ const CoffeeSectionContainer = styled.section`
         text-align: right;
         line-height: 1.8;
         color: ${({ theme }) => theme.colors.darkPurple};
+        font-size: clamp(0.9em, 3vw, 1.2em);
       }
     }
   }

@@ -6,7 +6,7 @@ const SelectInfuser = ({ infusers, setInfuser }) => {
   return (
     <select onChange={handleChange}>
       <option disabled selected value>
-        Select an Infuser
+        Infuser
       </option>
 
       {infusers.map(({ name, price, id }) => (

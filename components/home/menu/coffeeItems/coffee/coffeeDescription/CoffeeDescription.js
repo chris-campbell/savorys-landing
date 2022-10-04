@@ -7,7 +7,7 @@ const CoffeeDescriptionContainer = styled.p`
   align-self: center;
   word-wrap: break-word;
   margin-top: 2rem;
-  font-size: clamp(1rem, 1vw, ${({ theme }) => theme.fontSizes.xs});
+  font-size: clamp(0.8rem, 3vw, 0.9rem);
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: 400;
   letter-spacing: 0.03rem;

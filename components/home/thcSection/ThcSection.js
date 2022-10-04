@@ -46,6 +46,7 @@ const ThcSectionContainer = styled.section`
         text-align: left;
         line-height: 1.9;
         color: ${({ theme }) => theme.colors.tan};
+        font-size: clamp(0.9em, 3vw, 1.2em);
       }
     }
   }

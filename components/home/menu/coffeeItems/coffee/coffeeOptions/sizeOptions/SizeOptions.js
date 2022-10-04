@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const SizeOptionsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   column-gap: 0.3rem;
 
   select {
@@ -12,11 +12,12 @@ const SizeOptionsContainer = styled.div`
     padding: 0.2rem;
     background-color: transparent;
     font-family: ${({ theme }) => theme.fonts[1]};
-    color: ${({ theme }) => theme.colors.beanGreen};
+    color: ${({ theme }) => theme.colors.lightPurple};
     text-transform: capitalize;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding: 0.5rem 0.2rem;
     letter-spacing: 0.1px;
+    font-weight: 600;
   }
 `;
 
@@ -29,7 +30,7 @@ const SizeOptions = ({ sizes, setSize }) => {
     <SizeOptionsContainer>
       <select defaultValue={sizes[0]} onChange={handleChange}>
         <option disabled selected value>
-          Select a size
+          Size
         </option>
 
         {sizes.map(({ name, id }) => (

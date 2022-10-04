@@ -30,17 +30,19 @@ const HeroContainer = styled.section`
 
       h1 {
         color: ${({ theme }) => theme.colors.beanGreen};
-        font-size: clamp(${({ theme }) => theme.fontSizes.md}, 10vw, 4.2em);
+        font-size: clamp(${({ theme }) => theme.fontSizes.md}, 5vw, 4em);
         font-weight: 600;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
+        max-width: 90%;
       }
 
       p {
         color: ${({ theme }) => theme.colors.tan};
-        font-size: clamp(${({ theme }) => theme.fontSizes.xxs}, 100vw, 1.2em);
+        font-size: clamp(0.9em, 3vw, 1.2em);
         margin-bottom: 2rem;
         line-height: 1.6;
+        max-width: 80%;
       }
 
       button {

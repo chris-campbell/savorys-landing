@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import SelectInfuser from "./selectInfuser/SelectInfuser";
 
@@ -9,10 +9,11 @@ const InfuserOptionsContainer = styled.div`
     padding: 0.2rem;
     background-color: transparent;
     font-family: ${({ theme }) => theme.fonts[1]};
-    color: ${({ theme }) => theme.colors.beanGreen};
+    color: ${({ theme }) => theme.colors.lightPurple};
     text-transform: capitalize;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding: 0.5rem 0.2rem;
+    font-weight: 600;
   }
 `;
 

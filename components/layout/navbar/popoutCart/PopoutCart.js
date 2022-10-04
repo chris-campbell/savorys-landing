@@ -8,8 +8,6 @@ const PopoutCart = () => {
   const { line_items } = useCartState();
   const { open } = useContext(CartOpenContext);
 
-  console.log({ line_items });
-
   return (
     <PopOutCartContainer toggleOn={open}>
       <Cart lineItems={line_items} />
