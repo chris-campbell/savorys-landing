@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@chec/commerce.js": "^2.8.0",
+    "@stripe/stripe-js": "^1.38.1",
     "graphql": "^16.3.0",
     "interweave": "^13.0.0",
     "isomorphic-dompurify": "^0.18.0",
