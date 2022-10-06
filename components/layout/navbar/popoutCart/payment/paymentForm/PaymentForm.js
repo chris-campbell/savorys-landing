@@ -1,47 +1,57 @@
 import { useState } from "react";
-import { usePaymentInputs } from "react-payment-inputs";
 import { useCartDispatch } from "../../../../../../context/cart";
 import { orderDetails } from "./paymentInput/js/orderDetailsState";
 import InputField from "./inputField/InputField";
-import PaymentInput from "./paymentInput/PaymentInput";
 import getCommerce from "../../../../../../lib/commerce";
 import getOrderData from "./js/orderData";
+import { CardElement, ElementsConsumer } from "@stripe/react-stripe-js";
 import * as S from "./styles/styles";
-import MonthSelect from "./monthSelect/MonthSelect";
+
+import ClipLoader from "react-spinners/ClipLoader";
 
 const PaymentForm = ({ checkoutToken, subtotal, setOrder, setIndex }) => {
-  const { getCardNumberProps, getCVCProps } = usePaymentInputs();
   const { setCart } = useCartDispatch();
-
   const [orderState, setOrderState] = useState(orderDetails);
-
+  const [loading, setLoading] = useState(false);
+  const [color, setColor] = useState("#3F2D3B");
   const handleStateChange = (e, obj) => {
     setOrderState((prev) => ({ ...prev, [obj]: e }));
   };
 
-  const handleCaptureCheckout = async () => {
+  const goToConfirmation = () => {
+    setIndex((prev) => prev + 1);
+  };
+
+  const handleCaptureCheckout = async (stripe, elements) => {
     const commerce = getCommerce();
 
     try {
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardElement),
+      });
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+
+      setLoading(true);
+
       const order = await commerce.checkout.capture(
         checkoutToken.id,
-        getOrderData(orderState, checkoutToken)
+        getOrderData(orderState, checkoutToken, paymentMethod)
       );
 
       if (order) {
+        setLoading(false);
         setOrder(order);
-        setIndex((prev) => prev + 1);
+        goToConfirmation();
 
-        const cart = await refreshCart();
-        setCart(cart);
+        setCart(await refreshCart());
       }
     } catch (err) {
-      const errList = [err.data.error.message];
-      const errs = err.data.error.errors;
-      for (const index in errs) {
-        errList.push(`${index}: ${errs[index]}`);
-      }
-      setErrors(errList);
+      console.log(err);
     }
   };
 
@@ -60,116 +70,101 @@ const PaymentForm = ({ checkoutToken, subtotal, setOrder, setIndex }) => {
     return totalPrice.toFixed(2);
   };
 
-  return (
-    <S.FormContainer>
-      <div className="payment-form-wrapper">
-        <div className="customer-name">
-          <InputField
-            label="First Name"
-            placeholder="John"
-            name="first-name"
-            type="text"
-            setType="firstName"
-            handleChange={handleStateChange}
-          />
-          <InputField
-            label="Last Name"
-            placeholder="Smith"
-            name="last-name"
-            type="text"
-            setType="lastName"
-            handleChange={handleStateChange}
-          />
-        </div>
-        <div>
-          <InputField
-            label="Email"
-            placeholder="example@domain.com"
-            type="email"
-            name="Email"
-            setType="email"
-            handleChange={handleStateChange}
-          />
-        </div>
-      </div>
-
-      <div className="payment-form">
-        <div className="card-number-input">
-          <PaymentInput
-            label="Card number"
-            maxLength="19"
-            placeholder="Joe Doe"
-            name="card-number"
-            prop={getCardNumberProps}
-            setType="cardNumber"
-            handleChange={handleStateChange}
-          />
-        </div>
-
-        <div className="additional-payment-inputs">
-          <PaymentInput
-            label="cvc"
-            maxLength="3"
-            placeholder="000"
-            name="cvc"
-            prop={getCVCProps}
-            setType="cvc"
-            handleChange={handleStateChange}
-          />
-
-          <MonthSelect setType="expMonth" handleChange={handleStateChange} />
-
-          <InputField
-            label="Year"
-            maxLength="4"
-            placeholder="Year"
-            name="Year"
-            type="number"
-            min="2023"
-            max="2030"
-            setType="expYear"
-            handleChange={handleStateChange}
-          />
-
-          <InputField
-            label="Zipcode"
-            maxLength="19"
-            placeholder="Zipcode"
-            name="zipcode"
-            setType="zipcode"
-            handleChange={handleStateChange}
-          />
-        </div>
-
+  if (loading)
+    return (
+      <div>
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
+            flexDirection: "column",
+            marginTop: "7rem",
           }}
         >
-          <InputField
-            label="Promo code"
-            maxLength="19"
-            placeholder="Code"
-            name="promo-code"
-            setType="promo"
-            handleChange={handleStateChange}
-          />
+          <ClipLoader color={color} loading={loading} size={40} />
+          <p style={{ marginTop: "2rem", color: "#3F2D3B", fontWeight: "600" }}>
+            Processing Payment
+          </p>
         </div>
       </div>
+    );
 
-      <div className="final-totals">
-        <div className="total">
-          <div className="subname">Total</div>
-          <p className="total-value">${calculateTotal()}</p>
-        </div>
-      </div>
-
-      <S.CheckoutBtn onClick={() => handleCaptureCheckout()}>
-        Complete Checkout
-      </S.CheckoutBtn>
-    </S.FormContainer>
+  return (
+    <ElementsConsumer>
+      {({ stripe, elements }) => (
+        <S.FormContainer>
+          <div className="payment-form-wrapper">
+            <div className="customer-name">
+              <InputField
+                placeholder="First name"
+                name="first-name"
+                type="text"
+                setType="firstName"
+                handleChange={handleStateChange}
+              />
+              <InputField
+                placeholder="Last name"
+                name="last-name"
+                type="text"
+                setType="lastName"
+                handleChange={handleStateChange}
+              />
+            </div>
+            <div>
+              <InputField
+                placeholder="Email address"
+                type="email"
+                name="Email"
+                setType="email"
+                handleChange={handleStateChange}
+              />
+            </div>
+          </div>
+          <div className="payment-form">
+            <div>
+              <InputField
+                maxLength="19"
+                placeholder="Promo code"
+                name="promo-code"
+                setType="promo"
+                handleChange={handleStateChange}
+              />
+              <div style={{ margin: "2rem 0 2rem 0" }}>
+                <CardElement
+                  options={{
+                    style: {
+                      base: {
+                        padding: "3rem",
+                        fontSize: "16px",
+                        color: "#3F2D3B",
+                        "::placeholder": {
+                          color: "#fdf1da3b",
+                        },
+                      },
+                      invalid: {
+                        color: "#9e2146",
+                      },
+                    },
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="final-totals">
+            <div className="total">
+              <div className="subname">Total</div>
+              <p className="total-value">${calculateTotal()}</p>
+            </div>
+          </div>
+          <S.CheckoutBtn
+            onClick={() => handleCaptureCheckout(stripe, elements)}
+          >
+            Complete Checkout
+          </S.CheckoutBtn>
+        </S.FormContainer>
+      )}
+    </ElementsConsumer>
   );
 };
 

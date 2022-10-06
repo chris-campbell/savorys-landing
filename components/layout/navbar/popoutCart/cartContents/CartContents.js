@@ -3,6 +3,32 @@ import CartItem from "../cartItem/CartItem";
 import { useCartState } from "../../../../../context/cart";
 import styled from "styled-components";
 
+const CartItemCount = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+  h3 {
+    font-family: ${({ theme }) => theme.fonts[0]};
+    color: ${({ theme }) => theme.colors.tan};
+    text-transform: uppercase;
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+    font-weight: 900;
+  }
+
+  p {
+    width: 30px;
+    height: 30px;
+    border-radius: 1rem;
+    background-color: ${({ theme }) => theme.colors.darkPurple};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${({ theme }) => theme.colors.tan};
+    font-size: 0.7em;
+  }
+`;
+
 const CartContentsContainer = styled.div`
   margin-top: 4rem;
   display: flex;
@@ -47,11 +73,16 @@ const ContinueToPaymentBtn = styled.button`
   -moz-box-shadow: 10px 10px 16px -11px rgba(0, 0, 0, 0.75);
 `;
 
-const CartContents = ({ lineItems, goTo }) => {
+const CartContents = ({ lineItems, goTo, totalItems }) => {
   const { subtotal } = useCartState();
 
   return (
     <>
+      <CartItemCount className="cart-items-count">
+        <h3>Shopping Cart</h3>
+        <p>{totalItems}</p>
+      </CartItemCount>
+
       {lineItems.length <= 0 ? (
         <EmptyCartMsg className="empty-cart-msg">No items in cart</EmptyCartMsg>
       ) : (

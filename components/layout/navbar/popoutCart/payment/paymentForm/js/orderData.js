@@ -1,4 +1,4 @@
-const getOrderData = (orderState, checkoutToken) => {
+const getOrderData = (orderState, checkoutToken, paymentMethod) => {
   return {
     line_items: checkoutToken.live.line_items,
     customer: {
@@ -7,13 +7,9 @@ const getOrderData = (orderState, checkoutToken) => {
       email: orderState.email,
     },
     payment: {
-      gateway: "test_gateway",
-      card: {
-        number: orderState.cardNumber,
-        expiry_month: orderState.expMonth,
-        expiry_year: orderState.expYear,
-        cvc: orderState.cvc,
-        postal_zip_code: orderState.zipcode,
+      gateway: "stripe",
+      stripe: {
+        payment_method_id: paymentMethod.id,
       },
     },
   };

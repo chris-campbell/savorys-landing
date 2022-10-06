@@ -64,7 +64,6 @@ const CartItem = ({
   line_total,
   product_name,
   quantity,
-  sku,
   id,
   selected_options,
 }) => {
@@ -81,9 +80,9 @@ const CartItem = ({
         <div className="item-meta">
           <h4 className="item-name">{product_name}</h4>
           <div className="item-sku">
-            {selected_options.map(({ group_name, option_name }) => (
+            {selected_options.map(({ group_name, option_name, option_id }) => (
               <div
-                key={id}
+                key={option_id}
                 className="item-option"
               >{`${group_name}: ${option_name}`}</div>
             ))}

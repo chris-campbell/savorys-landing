@@ -22,32 +22,9 @@ export const PopOutCartContainer = styled.div`
     max-width: 30rem;
     width: 100%;
     z-index: 2;
-    .cart {
-      .cart-items-count {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 4rem;
-        h3 {
-          font-family: ${({ theme }) => theme.fonts[0]};
-          color: ${({ theme }) => theme.colors.tan};
-          text-transform: uppercase;
-          font-size: ${({ theme }) => theme.fontSizes.sm};
-          font-weight: 900;
-        }
 
-        p {
-          width: 30px;
-          height: 30px;
-          border-radius: 1rem;
-          background-color: ${({ theme }) => theme.colors.darkPurple};
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: ${({ theme }) => theme.colors.tan};
-          font-size: 0.7em;
-        }
-      }
+    @media (max-width: 580px) {
+      box-shadow: none;
     }
   }
 `;

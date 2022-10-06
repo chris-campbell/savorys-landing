@@ -12,7 +12,7 @@ const InputFieldContainer = styled.div`
     font-family: ${({ theme }) => theme.fonts[0]};
     color: ${({ theme }) => theme.colors.tan};
     font-weight: 600;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     margin-bottom: 0.6rem;
   }
 
@@ -25,8 +25,7 @@ const InputFieldContainer = styled.div`
     width: 100%;
     font-weight: 400;
     font-size: ${({ theme }) => theme.fontSizes.xxs};
-    text-transform: ${({ isEmail }) =>
-      isEmail === "email" ? "" : "capitalize"};
+
     &::placeholder {
       color: #fdf1da3b;
     }

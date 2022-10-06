@@ -12,6 +12,9 @@ export const FormContainer = styled.div`
     }
   }
   .payment-form {
+    .InputElement {
+      color: blue !important;
+    }
     .additional-payment-inputs {
       display: grid;
       grid-template-columns: repeat(4, 1fr);

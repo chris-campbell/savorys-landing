@@ -1,8 +1,16 @@
 import React, { useContext } from "react";
 import { CartOpenContext } from "../../../../../context/openCart";
-import styled from "styled-components";
+
+import styled, { keyframes } from "styled-components";
+
+const scaleInCard = keyframes`
+  0% { transform: scale(0.3) }
+ 100% { transform: scale(1.0) }
+`;
 
 const ConfirmationContainer = styled.div`
+  animation-name: ${scaleInCard};
+  animation-duration: 800ms;
   .confirmation-wrapper {
     .order-number {
       margin-bottom: 2rem;
@@ -31,7 +39,7 @@ const ConfirmationContainer = styled.div`
         font-family: ${({ theme }) => theme.fonts[0]};
         color: ${({ theme }) => theme.colors.tan};
         font-weight: 600;
-        margin-bottom: 1.2rem;
+        margin-bottom: 1.5rem;
       }
 
       p {
@@ -51,7 +59,7 @@ const ConfirmationContainer = styled.div`
         font-family: ${({ theme }) => theme.fonts[0]};
         color: ${({ theme }) => theme.colors.tan};
         font-weight: 600;
-        margin-bottom: 1rem;
+        margin-bottom: 1.2rem;
       }
 
       p {
