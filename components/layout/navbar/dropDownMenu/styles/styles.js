@@ -29,6 +29,10 @@ const DropDownMenuContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    @media (max-width: 672px) {
+      justify-content: flex-start;
+    }
+
     ul {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;

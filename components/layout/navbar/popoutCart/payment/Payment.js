@@ -56,10 +56,19 @@ const Payment = ({ subtotal, setOrder, setIndex }) => {
     const getCart = async () => {
       const response = await commerce.cart.retrieve();
 
+      const promoCode = "15OFFTHC";
+
       try {
         const token = await commerce.checkout.generateToken(response.id, {
           type: "cart",
         });
+
+        if (promoCode) {
+          const promoResp = await commerce.checkout.checkDiscount(token, {
+            code: promoCode,
+          });
+          console.log({ promoResp });
+        }
 
         setCartToken(token);
       } catch (error) {
