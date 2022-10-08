@@ -1,15 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Coffee from "./coffee/Coffee";
 import CoffeeItemsContainer from "./styles/styles";
 
 const CoffeeItems = ({ coffees }) => {
-  console.log({ coffees });
-
-  coffees?.variant_groups?.map(({ options, name }) => ({
-    name,
-    options: options.map((option) => console.log(option.name)),
-  }));
-
   coffees.map((coffee) => {
     coffee?.variant_groups?.map(({ options, name }) => ({
       name,

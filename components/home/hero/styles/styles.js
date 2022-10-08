@@ -45,13 +45,22 @@ const HeroContainer = styled.section`
         max-width: 80%;
       }
 
-      button {
+      a {
         background-color: ${({ theme }) => theme.colors.darkPurple};
         border: none;
         padding: 0.8rem 2rem;
         color: ${({ theme }) => theme.colors.tan};
         border-radius: 0.2rem;
         font-size: clamp(${({ theme }) => theme.fontSizes.xxs}, 100vw, 1.1em);
+        text-decoration: none;
+        &:active {
+          transform: scale(0.6);
+        }
+
+        &:hover {
+          transition: background-color 0.3s ease-in-out;
+          background-color: ${({ theme }) => theme.colors.lightPurple};
+        }
       }
     }
   }

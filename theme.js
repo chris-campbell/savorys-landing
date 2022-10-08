@@ -8,12 +8,14 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         padding: 0;
         margin: 0;
-
+      
+        scroll-behavior: smooth;
     }
 
     body {
         background-color: ${({ theme }) => theme.colors.tan};
         font-family: ${({ theme }) => theme.fonts[1]};
+        scroll-behavior: smooth;
     }
 
     main {

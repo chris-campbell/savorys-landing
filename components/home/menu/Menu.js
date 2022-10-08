@@ -11,7 +11,7 @@ const Menu = ({ products }) => {
     <div style={{ position: "relative" }}>
       <MenuContainer>
         <div className="menu-wrapper">
-          <div className="menu-title">
+          <div id="menu" className="menu-title">
             <div className="promo">Order. Pick-up. Get 15% Off</div>
             <h3>Select A Premium Coffee</h3>
           </div>
