@@ -14,7 +14,8 @@ const PaymentContainer = styled.div`
     }
 
     .final-totals {
-      .tax {
+      margin-top: 4rem;
+      .adjusted {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
@@ -24,7 +25,7 @@ const PaymentContainer = styled.div`
           color: #fdf1da82;
         }
 
-        .tax-value {
+        .adjusted-value {
           color: ${({ theme }) => theme.colors.tan};
         }
       }
@@ -49,6 +50,7 @@ const PaymentContainer = styled.div`
 
 const Payment = ({ subtotal, setOrder, setIndex }) => {
   const [cartToken, setCartToken] = useState({});
+  const [checkoutToken, setCheckoutToken] = useState("");
 
   const commerce = getCommerce();
 
@@ -56,20 +58,12 @@ const Payment = ({ subtotal, setOrder, setIndex }) => {
     const getCart = async () => {
       const response = await commerce.cart.retrieve();
 
-      const promoCode = "15OFFTHC";
-
       try {
         const token = await commerce.checkout.generateToken(response.id, {
           type: "cart",
         });
-
-        if (promoCode) {
-          const promoResp = await commerce.checkout.checkDiscount(token, {
-            code: promoCode,
-          });
-          console.log({ promoResp });
-        }
-
+        console.log({ checkoutToken });
+        console.log({ cartToken });
         setCartToken(token);
       } catch (error) {
         console.error("Checkout error: ", error);
@@ -77,7 +71,7 @@ const Payment = ({ subtotal, setOrder, setIndex }) => {
     };
 
     getCart();
-  }, []);
+  }, [subtotal]);
 
   return (
     <PaymentContainer>
@@ -86,7 +80,7 @@ const Payment = ({ subtotal, setOrder, setIndex }) => {
 
         <PaymentForm
           subtotal={subtotal}
-          checkoutToken={cartToken}
+          cartToken={cartToken}
           setOrder={setOrder}
           setIndex={setIndex}
         />

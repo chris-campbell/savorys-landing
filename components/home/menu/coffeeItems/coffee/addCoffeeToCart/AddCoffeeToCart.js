@@ -28,8 +28,13 @@ const AddCoffeeToCart = ({
   const updateCart = async (id, qty, variants = {}) => {
     const commerce = getCommerce();
 
-    const { cart } = await commerce.cart.add(id, qty, variants);
-    setCart(cart);
+    try {
+      const { cart } = await commerce.cart.add(id, qty, variants);
+
+      if (cart) return setCart(cart);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const addToCart = () => {
