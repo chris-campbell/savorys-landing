@@ -4,7 +4,7 @@ const MenuContainer = styled.section`
   max-width: 1200px;
   margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.tan};
-  padding: clamp(7rem, 20vw, 150px) clamp(1rem, 7vw, 50px);
+  padding: clamp(7rem, 20vw, 150px) 0px;
 
   .menu-title {
     display: flex;

@@ -6,14 +6,14 @@ export const PopOutCartContainer = styled.div`
   .popout-cart-wrapper {
     padding: 2rem;
     animation: ${({ toggleOn = false }) =>
-      toggleOn
+      !toggleOn
         ? css`
-            ${popOutCart} 0.7s linear forwards
+            ${popInCart} 0.7s linear forwards
           `
         : css`
-            ${popInCart} 0.7s linear forwards
+            ${popOutCart} 0.7s linear forwards
           `};
-    animation-duration: 800ms;
+    animation-duration: ${({ toggleOn }) => (toggleOn ? "800ms" : "0s")};
     position: fixed;
     bottom: 0;
     top: 0;

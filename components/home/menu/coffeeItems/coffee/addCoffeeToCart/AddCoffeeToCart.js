@@ -5,6 +5,7 @@ import getCommerce from "../../../../../../lib/commerce";
 import { CartOpenContext } from "../../../../../../context/openCart";
 import AddButton from "./addButton/AddButton";
 import Price from "./price/Price";
+import { toast } from "react-toastify";
 
 const AddCoffeeToCartContainer = styled.div`
   display: flex;
@@ -44,7 +45,15 @@ const AddCoffeeToCart = ({
     };
 
     if (variants[infuserGroupId] === "" || variants[sizeGroupId] === "")
-      return console.log("Empty");
+      return toast.warn(
+        ({}) => (
+          <div>
+            Please select a <span style={{ fontWeight: 600 }}>Size</span> and{" "}
+            <span style={{ fontWeight: 600 }}>Infuser</span>.
+          </div>
+        ),
+        { position: "bottom-right", autoClose: 1500 }
+      );
 
     if (open) {
       updateCart(coffeeId, 1, variants);

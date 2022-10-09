@@ -15,7 +15,6 @@ const Navbar = () => {
   const [menuToggle, setMenuToggle] = useState(false);
 
   const toggler = () => {
-    console.log(menuToggle);
     setMenuToggle(!menuToggle);
   };
 

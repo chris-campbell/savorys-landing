@@ -21,7 +21,7 @@ const DropDownMenuContainer = styled.div`
       : css`
           ${popUp} 0.7s linear forwards
         `};
-  animation-duration: 600ms;
+  animation-duration: ${({ menuToggle }) => (menuToggle ? "800ms" : "0s")};
   .dropdown-wrapper {
     max-width: 1200px;
     margin: 0 auto;
